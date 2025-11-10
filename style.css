@@ -1,0 +1,38 @@
+.key{
+    display:flex;
+    flex-direction:row;
+    padding: 20px;
+}
+.main-con {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    max-width:500px;
+}
+.screen{
+    display:flex;
+    padding:50px;
+    justify-content: center;
+}
+body{
+    display:flex;
+    justify-content: center;
+}
+.functions-top, .numpad, .functions-right{
+    display:flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+.numpad{
+    max-width:144px
+}
+.functions-right {
+    display: flex;
+    flex-direction: column;
+    max-width: 48px; 
+    
+}
+.center{
+    display:flex;
+    justify-content: center;
+}
