@@ -41,7 +41,7 @@ function operate(x, op, y) {
     case '+': return x + y;
     case '-': return x - y;
     case '*': return x * y;
-    case '/': return (Math.round((x / y) * 100000000) / 100000000);
+    case '/': return (Math.round((x / y) * 1000) / 1000);
   }
 }
 
@@ -56,9 +56,15 @@ function handleInput(val){
         if (val === '.' && currentInput.includes('.')) {
         return; // ignore extra dot
         }
-
-        currentInput += val;
-        display.textContent = currentInput;
+        if(currentInput.length >= 20)
+        {
+            return;
+        } else {
+            console.log(currentInput.length);
+            currentInput += val;
+            display.textContent = currentInput;
+        }
+        
     }
 
     // If it's an operator
