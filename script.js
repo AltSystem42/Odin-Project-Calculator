@@ -60,11 +60,15 @@ window.addEventListener("keydown", (e) => {
   }
 
   // Clear
-  else if (val === "Delete" || val === "Backspace") {
+  else if (val === "Delete") {
     display.textContent = "";
     previousInput = "";
     currentInput = "";
     operator = "";
+  }
+  else if (val === "Backspace"){
+    currentInput = currentInput.slice(0, -1);
+    display.textContent = currentInput || "0";
   }
 });
 
