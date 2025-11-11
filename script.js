@@ -54,7 +54,7 @@ window.addEventListener("keydown", (e) => {
   }
 
   // Clear
-  else if (val.toLowerCase() === "c") {
+  else if (val === "Delete" || val === "Backspace") {
     display.textContent = "";
     previousInput = "";
     currentInput = "";
