@@ -1,18 +1,21 @@
 .key{
     display:flex;
     flex-direction:row;
-    padding: 20px;
+    padding: 19px;
+    border: 1px solid gray;
 }
 .main-con {
     display:flex;
     flex-direction:column;
     justify-content: center;
     max-width:500px;
+    border:1px solid black;
 }
 .screen{
     display:flex;
     padding:50px;
     justify-content: center;
+    border:1px solid gray;
 }
 body{
     display:flex;
