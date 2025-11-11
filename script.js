@@ -44,20 +44,28 @@ window.addEventListener("keydown", (e) => {
 
   // Enter
   else if (val === "Enter") {
-    if (previousInput && operator && currentInput) {
-      const result = operate(previousInput, operator, currentInput);
-      if (result === "Ha you're funny") {
-        display.textContent = "Ha you're funny";
-        previousInput = "";
-        currentInput = "";
-        operator = "";
-        return;
-      }
-      display.textContent = result;
-      previousInput = String(result);
+  if (previousInput && operator && currentInput) {
+    const result = operate(previousInput, operator, currentInput);
+    if (result === "Ha you're funny") {
+      display.textContent = "Ha you're funny";
+      previousInput = "";
       currentInput = "";
+      operator = "";
+      return;
     }
+    display.textContent = result;
+    previousInput = String(result);
+    currentInput = "";
+    operator = ""; 
+  } 
+  //clear currentinput if enter/= is hit twice to keep number used.
+  else if (currentInput && !operator) {
+    display.textContent = currentInput;
+    previousInput = currentInput;
+    currentInput = "";
+    operator = "";
   }
+}
 
   // Clear
   else if (val === "Delete") {
@@ -69,6 +77,8 @@ window.addEventListener("keydown", (e) => {
   else if (val === "Backspace"){
     currentInput = currentInput.slice(0, -1);
     display.textContent = currentInput || "0";
+    if(currentInput === "" || currentInput === "0")
+        previousInput = ""
   }
 });
 
