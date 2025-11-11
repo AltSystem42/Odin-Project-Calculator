@@ -1,41 +1,79 @@
-const display = document.querySelector(".screen")
+const display = document.querySelector(".screen");
 
-window.addEventListener('keydown', (e) => {
-    const key = document.querySelector(`div[data-key="${e.key}"`)
-    console.log(e.key)
-    if(!key) return; // stop function from running on bad key.
-    if(["1","2","3","4","5","6","7","8","9","0", "(", ")", "÷", "x", "-", ".", "+"].includes(key.textContent)){
-        display.textContent += key.textContent
-    } else if (key.textContent === "C") {
-        display.textContent = ""
-    } else if (key.textContent === "="){
-        let string = display.textContent;
-        const operators = ["x", "+", "÷", "-"]
-        const index = [...string].findIndex(ch => operators.includes(ch))
-        
-        if (index !== -1){
-        const left = string.slice(0, index);
-        const operator = string[index];
-        const right = string.slice(index + 1);
-        let total = operate(left, operator, right)
-        display.textContent = total;
-        }
-    }
-    
-})
+let currentInput = "";
+let previousInput = "";
+let operator = "";
 
-function operate(x, y, z) {
-    x = parseInt(x)
-    z = parseInt(z)
-    switch(`${y}`){
-        case `x`:
-            return x * z;
-        case '÷':
-            return x / z;
-        case '+':
-            return x + z;
-        case '-':
-            return x - z;
+window.addEventListener("keydown", (e) => {
+  const val = e.key;
+  const numbers = ['0','1','2','3','4','5','6','7','8','9','.'];
+  const operators = ['+','-','*','/'];
+
+  // If it's a number
+  if (numbers.includes(val)) {
+    currentInput += val;
+    display.textContent = currentInput;
+  }
+
+  // If it's an operator
+  else if (operators.includes(val)) {
+    if (previousInput && operator && currentInput) {
+      const result = operate(previousInput, operator, currentInput);
+      if (result === "Error") {
+        display.textContent = "Error";
+        previousInput = "";
+        currentInput = "";
+        operator = "";
+        return;
+      }
+      display.textContent = result;
+      previousInput = String(result);
+      currentInput = "";
+    } else if (currentInput) {
+      previousInput = currentInput;
+      currentInput = "";
     }
-        
+    operator = val;
+  }
+
+  // Optional Enter / =
+  else if (val === "Enter" || val === "=") {
+    if (previousInput && operator && currentInput) {
+      const result = operate(previousInput, operator, currentInput);
+      if (result === "Error") {
+        display.textContent = "Error";
+        previousInput = "";
+        currentInput = "";
+        operator = "";
+        return;
+      }
+      display.textContent = result;
+      previousInput = String(result);
+      currentInput = "";
+    }
+  }
+
+  // Clear
+  else if (val.toLowerCase() === "c") {
+    display.textContent = "";
+    previousInput = "";
+    currentInput = "";
+    operator = "";
+  }
+});
+
+function operate(x, op, y) {
+  x = parseFloat(x);
+  y = parseFloat(y);
+
+  if (op === '/' && y === 0) {
+    return "Error";
+  }
+
+  switch (op) {
+    case '+': return x + y;
+    case '-': return x - y;
+    case '*': return x * y;
+    case '/': return x / y;
+  }
 }
