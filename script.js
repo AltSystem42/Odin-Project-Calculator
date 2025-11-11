@@ -36,8 +36,8 @@ window.addEventListener("keydown", (e) => {
     operator = val;
   }
 
-  // Optional Enter / =
-  else if (val === "Enter" || val === "=") {
+  // Enter
+  else if (val === "Enter") {
     if (previousInput && operator && currentInput) {
       const result = operate(previousInput, operator, currentInput);
       if (result === "Error") {
