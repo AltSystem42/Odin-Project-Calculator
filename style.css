@@ -40,3 +40,7 @@ body{
     display:flex;
     justify-content: center;
 }
+.top{
+    min-width: 100px;
+    justify-content: center;
+}

@@ -56,7 +56,7 @@ function handleInput(val){
         if (val === '.' && currentInput.includes('.')) {
         return; // ignore extra dot
         }
-        if(currentInput.length >= 20)
+        if(currentInput.length >= 30)
         {
             return;
         } else {
