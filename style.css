@@ -3,6 +3,8 @@
     flex-direction:row;
     padding: 19px;
     border: 1px solid gray;
+    justify-content: center;
+    align-items: center;
 }
 .main-con {
     display:flex;
